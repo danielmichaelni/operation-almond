@@ -1,0 +1,1 @@
+web: gunicorn operationalmond.wsgi --log-file -
