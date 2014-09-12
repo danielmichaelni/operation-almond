@@ -1,4 +1,4 @@
 from django.shortcuts import render
 
 def index(request):
-	return render(request, 'foodmarket/index.html')
+	return render(request, 'account/login.html')
