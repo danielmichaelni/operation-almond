@@ -15,6 +15,7 @@ class Dish(models.Model):
     rating = models.DecimalField(max_digits=3, decimal_places=1)
     price = models.DecimalField(max_digits=4, decimal_places=2)
     allergy_info = models.CharField(max_length=200)
+    available = models.BooleanField()
 
 class PreOrderDish(Dish): # for later
     deadline_to_order = models.DateTimeField()

@@ -1,9 +1,44 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Operation Almond</title>
-</head>
-<body>
-	<p>hello</p>
-</body>
-</html>
+{% extends 'foodmarket/base.html' %}
+
+{% block content %}
+
+<div id="hello">
+    <div class="container">
+    	<div class="row">
+    		<div class="col-lg-10 col-lg-offset-1 centered">
+    			<h1>Operation Almond</h1>
+    			<h2>WE LIVE TO EAT</h2>
+    		</div><!-- /col-lg-8 -->
+    	</div><!-- /row -->
+    </div> <!-- /container -->
+</div><!-- /hello -->
+
+<div id="green">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 centered">
+				<h3>WHAT DO WE DO?</h3>
+				<p>Operation Almond is a platform for buying and selling home-made food, from cookies to sandwiches to smoothies. Chefs can list food for sale in their <a href="#">kitchen</a>, while customers can <a href="#">browse</a> foods that have been listed. Payment will be processed with <a href="https://venmo.com/">venmo</a>, so please create an account if you don't already have one.</p>
+			</div>
+		</div>
+	</div>
+    <br>
+</div>
+
+<div class="container">
+	<div class="row centered mt grid">
+		<h3>FEATURED FOODS</h3>
+		<div class="mt"></div>
+		<div class="col-lg-4">
+			<a href="#"><img src="/static/img/almonds.jpg" alt=""></a>
+		</div>
+		<div class="col-lg-4">
+			<a href="#"><img src="/static/img/almonds.jpg" alt=""></a>
+		</div>
+		<div class="col-lg-4">
+			<a href="#"><img src="/static/img/almonds.jpg" alt=""></a>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

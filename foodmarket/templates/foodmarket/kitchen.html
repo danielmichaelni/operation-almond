@@ -1,0 +1,54 @@
+{% extends 'foodmarket/base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Welcome to your kitchen!
+                <small></small>
+            </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="page-header">Your inventory
+                <small></small>
+            </h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 portfolio-item">
+            <a href="/kitchen/add">
+                <img class="img-responsive" src="http://placehold.it/350x200" alt="">
+            </a>
+            <h3>
+                <a href="/kitchen/add">Add Inventory</a>
+            </h3>
+        </div>
+        <div class="col-md-4 portfolio-item">
+            <a href="#">
+                <img class="img-responsive" src="/static/img/almonds.jpg" alt="">
+            </a>
+            <h3>
+                <a href="#">Food Name</a>
+            </h3>
+            <p>Food Price</p>
+        </div>
+        <div class="col-md-4 portfolio-item">
+            <a href="#">
+                <img class="img-responsive" src="/static/img/almonds.jpg" alt="">
+            </a>
+            <h3>
+                <a href="#">Food Name</a>
+            </h3>
+            <p>Food Price</p>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

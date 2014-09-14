@@ -1,0 +1,27 @@
+html, body {
+    height: 100%;
+}
+
+.logo {
+    margin-right: 20px;
+}
+
+.block-content {
+    min-height: 80%;
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+#hello {
+    background: url(../img/almond-bg.jpg) no-repeat bottom center scroll;
+    background-size: cover;
+}
+
+.food-price {
+    margin-bottom: 0;
+}
+
+.social-login a img {
+    height: 60px;
+    width: auto;
+}
