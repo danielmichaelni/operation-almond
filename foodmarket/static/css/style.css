@@ -22,6 +22,18 @@ html, body {
 }
 
 .social-login a img {
-    height: 60px;
+    height: 55px;
     width: auto;
+}
+
+.round-button {
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    border: 1px solid #aaaaaa;
+    border-radius: 4px;
+}
+
+#login-button {
+    margin-left: 6px;
 }
