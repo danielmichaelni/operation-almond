@@ -7,11 +7,15 @@ class UserProfile(models.Model):
 User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
 
 class Vendor(models.Model):
-    user = models.OneToOneField(UserProfile)
+    user = models.OneToOneField(User)
     rating = models.DecimalField(max_digits=3, decimal_places=1)
+
+User.vendor = property(lambda u: Vendor.objects.get_or_create(user=u)[0])
 
 class Dish(models.Model):
     vendor = models.ForeignKey(Vendor)
+    name = models.CharField(max_length=200)
+    image = models.ImageField()
     rating = models.DecimalField(max_digits=3, decimal_places=1)
     price = models.DecimalField(max_digits=4, decimal_places=2)
     allergy_info = models.CharField(max_length=200)

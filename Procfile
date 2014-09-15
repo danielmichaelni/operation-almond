@@ -1,1 +1,1 @@
-web: gunicorn -b 127.0.0.1:5000 operationalmond.wsgi --log-file -
+web: gunicorn operationalmond.wsgi --log-file -

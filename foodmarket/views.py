@@ -16,5 +16,13 @@ def kitchen(request):
     return render(request, 'foodmarket/kitchen.html')
 
 def add_inventory(request):
-    form = forms.AddNowOrderDishForm()
+    form = forms.AddNowOrderDishForm(request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+
+        price = form.cleaned_data['price']
+        allergy_info = form.cleaned_data['allergy_info']
+        num_for_sale = form.cleaned_data['num_for_sale']
+
+        return render(request, 'foodmarket/test.html', {'test': 'added inventory'})
+
     return render(request, 'foodmarket/add_inventory.html', {'form': form})
