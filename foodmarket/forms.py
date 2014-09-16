@@ -1,13 +1,19 @@
-from django import forms
+from django.forms import ModelForm
+from foodmarket.models import NowOrderDish, Review
 
-class AddDishForm(forms.Form):
-    name = forms.CharField(max_length=200)
-    price = forms.DecimalField(max_digits=4, decimal_places=2, min_value=0)
-    image = forms.ImageField()
-    allergy_info = forms.CharField(max_length=200)
+class NowOrderDishForm(ModelForm):
+    class Meta:
+        model = NowOrderDish
+        fields = [
+            'name',
+            'price',
+            'num_for_sale',
+            'image_url',
+            'allergy_info']
 
-class AddNowOrderDishForm(AddDishForm):
-    num_for_sale = forms.IntegerField(min_value=0)
-
-class AddReviewForm(forms.Form):
-    rating = forms.IntegerField()
+class ReviewForm(ModelForm):
+    class Meta:
+        model = Review
+        fields = [
+            'rating',
+            'comment']

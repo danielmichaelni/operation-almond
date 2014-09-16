@@ -15,10 +15,10 @@ User.vendor = property(lambda u: Vendor.objects.get_or_create(user=u)[0])
 class Dish(models.Model):
     vendor = models.ForeignKey(Vendor)
     name = models.CharField(max_length=200)
-    image = models.ImageField()
-    rating = models.DecimalField(max_digits=3, decimal_places=1)
     price = models.DecimalField(max_digits=4, decimal_places=2)
+    image_url = models.URLField(blank=True, verbose_name='Image URL (optional)')
     allergy_info = models.CharField(max_length=200)
+    rating = models.DecimalField(max_digits=3, decimal_places=1)
     available = models.BooleanField()
 
 class PreOrderDish(Dish): # for later
@@ -33,4 +33,5 @@ class Review(models.Model):
     dish = models.ForeignKey(Dish)
     user = models.ForeignKey(User)
     rating = models.IntegerField()
+    comment = models.CharField(max_length=1000)
     published_date = models.DateTimeField(auto_now_add=True)

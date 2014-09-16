@@ -144,6 +144,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
  
 # auth and allauth settings
 LOGIN_REDIRECT_URL = '/'
+ADAPTER = 'operationalmond.users.adapter.MyAccountAdapter'
+ACCOUNT_ADAPTER = 'operationalmond.users.adapter.MyAccountAdapter'
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_REQUIRED = True

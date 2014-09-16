@@ -9,21 +9,26 @@
 <div class="container">
 
   <div class="row">
-    <div class="col-md-4 col-md-offset-2">
-      <h1>Log In</h1>
+    <div class="col-md-8 col-md-offset-2">
+      <br>
+      {% if request.GET.next %}
+        <h1>Log In Required for that Page</h1>
+      {% else %}
+        <h1>Log In</h1>
+      {% endif %}
       <br>
     </div>
   </div>
 
   <div class="col-md-3 col-md-offset-2">
     <div class="social-login">
-      <a href="/accounts/facebook/login">
+      <a href="/accounts/facebook/login?next={{ request.GET.next }}">
         <img src="/static/img/facebook-login-button.png">
       </a>
     </div>
 
     <div class="social-login">
-      <a href="/accounts/google/login">
+      <a href="/accounts/google/login?next={{ request.GET.next }}">
         <img src="/static/img/google-login-button.png">
       </a>
     </div>
