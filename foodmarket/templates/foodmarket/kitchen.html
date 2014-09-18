@@ -6,38 +6,34 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Welcome to your kitchen!
-                <small></small>
-            </h1>
+            <h1 class="page-header">Welcome to your kitchen!</h1>
         </div>
     </div>
 
     <div class="row">
         <div class="col-lg-12">
-            <h2 class="page-header">Your inventory
-                <small></small>
-            </h2>
+            <h2 class="page-header">Your inventory</h2>
         </div>
     </div>
 
     <div id="msnry-container">
         <div class="col-md-4 portfolio-item">
-            <a href="/kitchen/add">
+            <a href="{% url 'add_inventory' %}">
                 <img class="img-responsive" src="http://placehold.it/350x200" alt="">
             </a>
             <h3>
-                <a href="/kitchen/add">Add Inventory</a>
+                <a href="{% url 'add_inventory' %}">Add Inventory</a>
             </h3>
         </div>
 
         {% for dish in dishes %}
 
         <div class="col-md-4 portfolio-item">
-            <a href="/dish/{{ dish.id }}">
+            <a href="{% url 'dish_detail' dish.id %}">
                 <img class="img-responsive" src="{{ dish.image_url }}" onerror="imgError(this)">
             </a>
             <h3>
-                <a href="/dish/{{ dish.id }}">{{ dish.name }}</a>
+                <a href="{% url 'dish_detail' dish.id %}">{{ dish.name }}</a>
                 <small>${{ dish.price }} • {{ dish.num_for_sale }} remaining</small>
             </h3>
         </div>

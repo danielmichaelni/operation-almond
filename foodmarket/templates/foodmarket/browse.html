@@ -19,11 +19,11 @@
         {% for dish in dishes %}
 
         <div class="col-md-4 portfolio-item">
-            <a href="/dish/{{ dish.id }}">
+            <a href="{% url 'dish_detail' dish.id %}">
                 <img class="img-responsive" src="{{ dish.image_url }}" onerror="imgError(this)">
             </a>
             <h3>
-                <a href="/dish/{{ dish.id }}">{{ dish.name }}</a>
+                <a href="{% url 'dish_detail' dish.id %}">{{ dish.name }}</a>
                 <small>${{ dish.price }} • {{ dish.num_for_sale }} remaining</small>
             </h3>
         </div>
