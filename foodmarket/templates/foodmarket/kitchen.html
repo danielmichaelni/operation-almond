@@ -1,4 +1,4 @@
-{% extends 'foodmarket/base.html' %}
+{% extends 'foodmarket/image_display_base.html' %}
 
 {% block content %}
 
@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div id="msnry-container">
         <div class="col-md-4 portfolio-item">
             <a href="/kitchen/add">
                 <img class="img-responsive" src="http://placehold.it/350x200" alt="">
@@ -29,25 +29,42 @@
                 <a href="/kitchen/add">Add Inventory</a>
             </h3>
         </div>
+
+        {% for dish in dishes %}
+
         <div class="col-md-4 portfolio-item">
-            <a href="#">
-                <img class="img-responsive" src="/static/img/almonds.jpg" alt="">
+            <a href="/dish/{{ dish.id }}">
+                <img class="img-responsive" src="{{ dish.image_url }}" onerror="imgError(this)">
             </a>
             <h3>
-                <a href="#">Food Name</a>
+                <a href="/dish/{{ dish.id }}">{{ dish.name }}</a>
+                <small>${{ dish.price }} • {{ dish.num_for_sale }} remaining</small>
             </h3>
-            <p>Food Price</p>
         </div>
-        <div class="col-md-4 portfolio-item">
-            <a href="#">
-                <img class="img-responsive" src="/static/img/almonds.jpg" alt="">
-            </a>
-            <h3>
-                <a href="#">Food Name</a>
-            </h3>
-            <p>Food Price</p>
-        </div>
+
+        {% endfor %}
     </div>
+
+    <!--
+    <div class="col-md-4 portfolio-item">
+        <a href="#">
+            <img class="img-responsive" src="/static/img/almonds.jpg" alt="">
+        </a>
+        <h3>
+            <a href="#">Food Name</a>
+        </h3>
+        <p>Food Price</p>
+    </div>
+    <div class="col-md-4 portfolio-item">
+        <a href="#">
+            <img class="img-responsive" src="/static/img/almonds.jpg" alt="">
+        </a>
+        <h3>
+            <a href="#">Food Name</a>
+        </h3>
+        <p>Food Price</p>
+    </div>
+    -->
 
 </div>
 

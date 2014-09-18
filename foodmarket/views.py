@@ -10,12 +10,12 @@ def index(request):
 #    pass
 
 def browse(request):
-    dishes = Dish.objects.filter(available=True)
+    dishes = NowOrderDish.objects.filter(available=True)
     return render(request, 'foodmarket/browse.html', {'dishes': dishes})
 
 def dish_detail(request, dish_id): # todo
     dish = get_object_or_404(NowOrderDish, pk=dish_id)
-    return render(request, 'foodmarket/index.html')
+    return render(request, 'foodmarket/dish_detail.html', {'dish': dish})
 
 def dish_reviews(request): # todo
     return render(request, 'foodmarket/index.html')
@@ -25,19 +25,30 @@ def review_detail(request): # todo
 
 @login_required
 def kitchen(request):
-    return render(request, 'foodmarket/kitchen.html')
+    dishes = request.user.vendor.dish.all()
+    return render(request, 'foodmarket/kitchen.html', {'dishes': dishes})
 
 @login_required
 def add_inventory(request):
     form = forms.NowOrderDishForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
+        vendor = request.user.vendor
         name = form.cleaned_data['name']
         price = form.cleaned_data['price']
         num_for_sale = form.cleaned_data['num_for_sale']
         image_url = form.cleaned_data['image_url']
         allergy_info = form.cleaned_data['allergy_info']
+        available = num_for_sale > 0
 
-        d = NowOrderDish(name=name, price=price, num_for_sale=num_for_sale, image_url=image_url, allergy_info=allergy_info)
+        d = NowOrderDish(
+            vendor=vendor,
+            name=name,
+            price=price,
+            num_for_sale=num_for_sale,
+            image_url=image_url,
+            allergy_info=allergy_info,
+            available=available)
+        d.save()
 
         return render(request, 'foodmarket/test.html', {'test': name})
     return render(request, 'foodmarket/add_inventory.html', {'form': form})

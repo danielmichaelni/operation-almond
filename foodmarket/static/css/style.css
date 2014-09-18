@@ -17,10 +17,6 @@ html, body {
     background-size: cover;
 }
 
-.food-price {
-    margin-bottom: 0;
-}
-
 .social-login a img {
     height: 55px;
     width: auto;
@@ -36,4 +32,12 @@ html, body {
 
 #login-button {
     margin-left: 6px;
+}
+
+.portfolio-item {
+    margin-bottom: 20px;
+}
+
+.portfolio-item a img {
+    width: 100%;
 }

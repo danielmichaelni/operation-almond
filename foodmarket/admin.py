@@ -1,3 +1,4 @@
 from django.contrib import admin
+from foodmarket.models import NowOrderDish
 
-# Register your models here.
+admin.site.register(NowOrderDish)

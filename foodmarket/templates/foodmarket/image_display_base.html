@@ -1,0 +1,28 @@
+{% extends 'foodmarket/base.html' %}
+
+{% block content %} {% endblock %}
+
+{% block scripts %}
+
+<script>
+    function imgError(image) {
+        image.onerror = "";
+        image.src = "/static/img/image-unavailable.jpg";
+        return true;
+    }
+</script>
+
+<script src="/static/js/masonry.pkgd.min.js"></script>
+<script src="/static/js/imagesloaded.pkgd.min.js"></script>
+
+<script>
+    var container = document.querySelector('#msnry-container');
+    var msnry;
+    imagesLoaded(container, function() {
+        msnry = new Masonry(container, {
+            itemSelector: '.portfolio-item'
+        });
+    });
+</script>
+
+{% endblock %}
