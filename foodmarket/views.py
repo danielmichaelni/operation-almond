@@ -6,9 +6,6 @@ from foodmarket import forms
 def index(request):
     return render(request, 'foodmarket/index.html')
 
-#def login_required(request):
-#    pass
-
 def browse(request):
     dishes = NowOrderDish.objects.filter(available=True)
     return render(request, 'foodmarket/browse.html', {'dishes': dishes})
@@ -16,6 +13,10 @@ def browse(request):
 def dish_detail(request, dish_id): # todo
     dish = get_object_or_404(NowOrderDish, pk=dish_id)
     return render(request, 'foodmarket/dish_detail.html', {'dish': dish})
+
+@login_required
+def order_dish(request, dish_id):
+    pass
 
 def dish_reviews(request): # todo
     return render(request, 'foodmarket/index.html')
@@ -25,7 +26,7 @@ def review_detail(request): # todo
 
 @login_required
 def kitchen(request):
-    dishes = request.user.vendor.dish.all()
+    dishes = request.user.vendor.noworderdish_set.all()
     return render(request, 'foodmarket/kitchen.html', {'dishes': dishes})
 
 @login_required

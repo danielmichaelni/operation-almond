@@ -160,3 +160,8 @@ SOCIALACCOUNT_PROVIDERS = {
 SITE_ID = 1
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+### APP INFO
+
+VENMO_ID = 1983
+VENMO_SECRET = os.environ['VENMO_SECRET']

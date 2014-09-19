@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, related_name='profile')
+    venmo_authorization_code = models.CharField(max_length=200)
+
+
 
 User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
 
@@ -13,13 +16,24 @@ class Vendor(models.Model):
 User.vendor = property(lambda u: Vendor.objects.get_or_create(user=u)[0])
 
 class Dish(models.Model):
-    vendor = models.ForeignKey(Vendor, related_name='dish')
+    vendor = models.ForeignKey(Vendor)
     name = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=4, decimal_places=2, verbose_name='Price ($)')
     image_url = models.URLField(blank=True, verbose_name='Image URL (optional)')
     allergy_info = models.CharField(max_length=200)
     available = models.BooleanField()
     rating = models.DecimalField(max_digits=3, decimal_places=1, default=0)
+
+    require_pre_order = models.BooleanField(default=False)
+
+    # does not require pre-order
+    num_for_sale = models.IntegerField(verbose_name='Number for sale')
+
+    # requires pre-order
+    deadline_to_order = models.DateTimeField()
+    availability_date = models.DateTimeField()
+    num_available = models.IntegerField()
+
 
 class PreOrderDish(Dish): # for later
     deadline_to_order = models.DateTimeField()
