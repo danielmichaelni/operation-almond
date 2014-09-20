@@ -1,9 +1,9 @@
 from django.forms import ModelForm
-from foodmarket.models import NowOrderDish, Review
+from foodmarket.models import Dish, Review
 
 class NowOrderDishForm(ModelForm):
     class Meta:
-        model = NowOrderDish
+        model = Dish
         fields = [
             'name',
             'price',

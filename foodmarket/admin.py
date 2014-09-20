@@ -1,4 +1,5 @@
 from django.contrib import admin
-from foodmarket.models import NowOrderDish
+from foodmarket.models import UserProfile, Dish
 
-admin.site.register(NowOrderDish)
+admin.site.register(UserProfile)
+admin.site.register(Dish)

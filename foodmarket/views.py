@@ -1,17 +1,17 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from foodmarket.models import UserProfile, Vendor, Dish, PreOrderDish, NowOrderDish, Review
+from foodmarket.models import UserProfile, Vendor, Dish, Review
 from foodmarket import forms
 
 def index(request):
     return render(request, 'foodmarket/index.html')
 
 def browse(request):
-    dishes = NowOrderDish.objects.filter(available=True)
+    dishes = Dish.objects.filter(available=True)
     return render(request, 'foodmarket/browse.html', {'dishes': dishes})
 
 def dish_detail(request, dish_id): # todo
-    dish = get_object_or_404(NowOrderDish, pk=dish_id)
+    dish = get_object_or_404(Dish, pk=dish_id)
     return render(request, 'foodmarket/dish_detail.html', {'dish': dish})
 
 @login_required
@@ -25,8 +25,12 @@ def review_detail(request): # todo
     return render(request, 'foodmarket/index.html')
 
 @login_required
+def profile(request):
+    return render(request, 'foodmarket/profile.html')
+
+@login_required
 def kitchen(request):
-    dishes = request.user.vendor.noworderdish_set.all()
+    dishes = request.user.vendor.dish.all()
     return render(request, 'foodmarket/kitchen.html', {'dishes': dishes})
 
 @login_required
@@ -41,7 +45,7 @@ def add_inventory(request):
         allergy_info = form.cleaned_data['allergy_info']
         available = num_for_sale > 0
 
-        d = NowOrderDish(
+        d = Dish(
             vendor=vendor,
             name=name,
             price=price,
@@ -51,5 +55,5 @@ def add_inventory(request):
             available=available)
         d.save()
 
-        return render(request, 'foodmarket/test.html', {'test': name})
+        return redirect('/dish/%d', d.id)
     return render(request, 'foodmarket/add_inventory.html', {'form': form})

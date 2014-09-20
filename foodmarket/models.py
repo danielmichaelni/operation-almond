@@ -16,7 +16,7 @@ class Vendor(models.Model):
 User.vendor = property(lambda u: Vendor.objects.get_or_create(user=u)[0])
 
 class Dish(models.Model):
-    vendor = models.ForeignKey(Vendor)
+    vendor = models.ForeignKey(Vendor, related_name='dish')
     name = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=4, decimal_places=2, verbose_name='Price ($)')
     image_url = models.URLField(blank=True, verbose_name='Image URL (optional)')
@@ -24,17 +24,17 @@ class Dish(models.Model):
     available = models.BooleanField()
     rating = models.DecimalField(max_digits=3, decimal_places=1, default=0)
 
-    require_pre_order = models.BooleanField(default=False)
+    #require_pre_order = models.BooleanField(default=False)
 
-    # does not require pre-order
-    num_for_sale = models.IntegerField(verbose_name='Number for sale')
+    # now-order dish
+    num_for_sale = models.IntegerField(null=True, verbose_name='Number for sale')
 
-    # requires pre-order
-    deadline_to_order = models.DateTimeField()
-    availability_date = models.DateTimeField()
-    num_available = models.IntegerField()
+    # pre-order dish
+    deadline_to_order = models.DateTimeField(null=True)
+    availability_date = models.DateTimeField(null=True)
+    num_available = models.IntegerField(null=True)
 
-
+"""
 class PreOrderDish(Dish): # for later
     deadline_to_order = models.DateTimeField()
     availability_date = models.DateTimeField()
@@ -42,6 +42,7 @@ class PreOrderDish(Dish): # for later
 
 class NowOrderDish(Dish):
     num_for_sale = models.IntegerField(verbose_name='Number for sale')
+"""
 
 class Review(models.Model):
     dish = models.ForeignKey(Dish)

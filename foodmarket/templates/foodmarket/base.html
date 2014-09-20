@@ -42,6 +42,7 @@
             <li><a href="{% url 'browse' %}">Browse</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
+            <li><a href="{% url 'profile' %}">My Profile</a></li>
             <li><a href="{% url 'kitchen' %}">My Kitchen</a></li>
             {% if request.user.is_authenticated %}
             <li class="active"><a href="/accounts/logout">Log Out</a></li>
