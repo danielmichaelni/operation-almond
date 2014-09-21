@@ -1,8 +1,6 @@
 {% extends 'foodmarket/base.html' %}
 
-{% block content %} {% endblock %}
-
-{% block scripts %}
+{% block head_content %}
 
 <script>
     function imgError(image) {
@@ -11,6 +9,12 @@
         return true;
     }
 </script>
+
+{% endblock %}
+
+{% block content %} {% endblock %}
+
+{% block scripts %}
 
 <script src="/static/js/masonry.pkgd.min.js"></script>
 <script src="/static/js/imagesloaded.pkgd.min.js"></script>
