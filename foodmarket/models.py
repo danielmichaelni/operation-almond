@@ -1,11 +1,17 @@
 from django.db import models
 from django.contrib.auth.models import User
+import requests
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, related_name='profile')
-    venmo_authorization_code = models.CharField(max_length=200)
+    venmo_id = models.CharField(max_length=200)
+    venmo_access_token = models.CharField(max_length=200)
+    venmo_refresh_token = models.CharField(max_length=200)
 
-
+    def venmo_authorized(self):
+        if self.venmo_access_token:
+            return True
+        return False
 
 User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
 
@@ -33,16 +39,6 @@ class Dish(models.Model):
     deadline_to_order = models.DateTimeField(null=True)
     availability_date = models.DateTimeField(null=True)
     num_available = models.IntegerField(null=True)
-
-"""
-class PreOrderDish(Dish): # for later
-    deadline_to_order = models.DateTimeField()
-    availability_date = models.DateTimeField()
-    num_available = models.IntegerField()
-
-class NowOrderDish(Dish):
-    num_for_sale = models.IntegerField(verbose_name='Number for sale')
-"""
 
 class Review(models.Model):
     dish = models.ForeignKey(Dish)

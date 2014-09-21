@@ -10,4 +10,5 @@ urlpatterns = patterns('',
     url(r'^profile/$', views.profile, name='profile'),
     url(r'^kitchen/$', views.kitchen, name='kitchen'),
     url(r'^kitchen/add/$', views.add_inventory, name='add_inventory'),
+    url(r'^venmo/$', views.venmo_authorization, name='venmo_authorization'),
 )

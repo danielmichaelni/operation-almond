@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
 from foodmarket.models import UserProfile, Vendor, Dish, Review
 from foodmarket import forms
+import requests
 
 def index(request):
     return render(request, 'foodmarket/index.html')
@@ -26,7 +28,27 @@ def review_detail(request): # todo
 
 @login_required
 def profile(request):
-    return render(request, 'foodmarket/profile.html')
+    payload = {
+        'client_id': settings.VENMO_ID,
+        'scope': 'make_payments',
+        'response_type': 'code'}
+    r = requests.get('https://api.venmo.com/v1/oauth/authorize', params=payload)
+    return render(request, 'foodmarket/profile.html', {'venmo_authorization_url': r.url})
+
+@login_required
+def venmo_authorization(request):
+    venmo_authorization_code = request.GET.get('code')
+    data = {
+        'client_id': settings.VENMO_ID,
+        'client_secret': settings.VENMO_SECRET,
+        'code': venmo_authorization_code}
+    url = 'https://api.venmo.com/v1/oauth/access_token'
+    response = requests.post(url, data)
+    response_dict = response.json()
+    request.user.profile.venmo_id = response_dict['user']['id']
+    request.user.profile.venmo_access_token = response_dict['access_token']
+    request.user.profile.venmo_refresh_token = ['refresh_token']
+    return redirect('/profile')
 
 @login_required
 def kitchen(request):
