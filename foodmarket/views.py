@@ -46,9 +46,11 @@ def venmo_authorization(request):
     url = 'https://api.venmo.com/v1/oauth/access_token'
     response = requests.post(url, data)
     response_dict = response.json()
-    request.user.profile.venmo_id = response_dict['user']['id']
-    request.user.profile.venmo_access_token = response_dict['access_token']
-    request.user.profile.venmo_refresh_token = response_dict['refresh_token']
+    p = request.user.profile
+    p.venmo_id = response_dict['user']['id']
+    p.venmo_access_token = response_dict['access_token']
+    p.venmo_refresh_token = response_dict['refresh_token']
+    p.save()
     return redirect('/profile')
 
 @login_required
