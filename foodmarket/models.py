@@ -1,14 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django_extensions.db.fields.encrypted import EncryptedCharField
 import requests
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, related_name='profile')
-    venmo_id = models.CharField(max_length=200)
-    venmo_access_token = models.CharField(max_length=200)
-    venmo_refresh_token = models.CharField(max_length=200)
 
-    def venmo_authorized(self):
+    venmo_id = EncryptedCharField(max_length=200)
+    venmo_access_token = EncryptedCharField(max_length=200)
+    venmo_refresh_token = EncryptedCharField(max_length=200)
+
+    def is_venmo_authorized(self):
         if self.venmo_access_token:
             return True
         return False

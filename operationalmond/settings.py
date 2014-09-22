@@ -45,6 +45,8 @@ INSTALLED_APPS = (
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
+    # extensions
+    'django_extensions',
     # bootstrap-form
     'bootstrapform',
 )
@@ -97,7 +99,7 @@ STATIC_URL = '/static/'
 
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
+DATABASES['default'] = dj_database_url.config()
 
 DATABASES = {
     'default': {
@@ -165,3 +167,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 VENMO_ID = 1983
 VENMO_SECRET = os.environ['VENMO_SECRET']
+
+### ENCRYPTED FIELDS
+
+ENCRYPTED_FIELD_KEYS_DIR = os.path.join(BASE_DIR, '../keyset')

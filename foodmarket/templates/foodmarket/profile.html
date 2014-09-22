@@ -4,7 +4,7 @@
 
 <div class="container">
     <h1>Profile</h1>
-    {% if request.user.profile.venmo_authorized %}
+    {% if request.user.profile.is_venmo_authorized %}
         <p>You are connected with Venmo</p>
     {% else %}
         <a href="{{ venmo_authorization_url }}">Connect with Venmo</a>

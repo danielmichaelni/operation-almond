@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.conf import settings
 from foodmarket.models import UserProfile, Vendor, Dish, Review
+from foodmarket.decorators import venmo_authorized
 from foodmarket import forms
 import requests
 
@@ -51,6 +52,7 @@ def venmo_authorization(request):
     return redirect('/profile')
 
 @login_required
+@venmo_authorized
 def kitchen(request):
     dishes = request.user.vendor.dish.all()
     return render(request, 'foodmarket/kitchen.html', {'dishes': dishes})
