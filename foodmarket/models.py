@@ -32,7 +32,7 @@ class Dish(models.Model):
     available = models.BooleanField()
     rating = models.DecimalField(max_digits=3, decimal_places=1, default=0)
 
-    #require_pre_order = models.BooleanField(default=False)
+    require_pre_order = models.BooleanField(default=False)
 
     # now-order dish
     num_for_sale = models.IntegerField(null=True, verbose_name='Number for sale')

@@ -167,7 +167,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 VENMO_ID = 1983
 VENMO_SECRET = os.environ['VENMO_SECRET']
-VENMO_PAY_TO_USER_ID = 
+VENMO_PAY_TO_USER_ID = 1392315553808384410
 
 ### ENCRYPTED FIELDS
 

@@ -20,7 +20,15 @@ def dish_detail(request, dish_id): # todo
 @login_required
 @venmo_authorized
 def order_dish(request, dish_id):
-    pass
+    data = {
+        'access_token': request.user.profile.venmo_access_token,
+        'user_id': settings.VENMO_PAY_TO_USER_ID,
+        'note': 'almonds',
+        'amount': 1}
+    url = 'https://api.venmo.com/v1/payments'
+    response = requests.post(url, data)
+    response_dict = response.json()
+    return redirect('/')
 
 def dish_reviews(request): # todo
     return render(request, 'foodmarket/index.html')
