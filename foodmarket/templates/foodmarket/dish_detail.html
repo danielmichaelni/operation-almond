@@ -6,7 +6,7 @@
     <h1>{{ dish.name }}</h1>
     <h4>${{ dish.price }} • {{ dish.num_for_sale }} remaining</h4>
     <img src="{{ dish.image_url }}">
-    <a href="{% url 'index' %}">Order</a>
+    <a href="{% url 'order_dish' dish.id %}">Order</a>
 </div>
 
 {% endblock %}

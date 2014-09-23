@@ -20,11 +20,13 @@ def dish_detail(request, dish_id): # todo
 @login_required
 @venmo_authorized
 def order_dish(request, dish_id):
+    dish = get_object_or_404(Dish, pk=dish_id)
     data = {
         'access_token': request.user.profile.venmo_access_token,
         'user_id': settings.VENMO_PAY_TO_USER_ID,
-        'note': 'almonds',
-        'amount': 1}
+        'note': 'buying ' + dish.name + ' from ' + dish.vendor.user.username,
+        'amount': dish.price,
+        'audience': 'private'}
     url = 'https://api.venmo.com/v1/payments'
     response = requests.post(url, data)
     response_dict = response.json()
