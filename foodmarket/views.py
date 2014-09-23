@@ -92,5 +92,5 @@ def add_inventory(request):
             available=available)
         d.save()
 
-        return redirect('/dish/%d', d.id)
+        return redirect('/dish/%d' % d.id)
     return render(request, 'foodmarket/add_inventory.html', {'form': form})
