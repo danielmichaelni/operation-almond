@@ -18,6 +18,7 @@ def dish_detail(request, dish_id): # todo
     return render(request, 'foodmarket/dish_detail.html', {'dish': dish})
 
 @login_required
+@venmo_authorized
 def order_dish(request, dish_id):
     pass
 
