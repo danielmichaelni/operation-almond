@@ -103,12 +103,12 @@ DATABASES['default'] = dj_database_url.config()
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', 
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'df40ioo1oosvhn',
         'HOST': 'ec2-54-197-238-242.compute-1.amazonaws.com',
-        'PORT': '5432',                    
-        'USER': 'pjxkxkzjwscdsm',
-        'PASSWORD': '9NrZuvBs-6yoLTpeYxF_mHQzjn',                             
+        'PORT': '5432',
+        'USER': os.environ['HEROKU_PG_USER'],
+        'PASSWORD': os.environ['HEROKU_PG_PASSWORD'],
     }
 }
 
