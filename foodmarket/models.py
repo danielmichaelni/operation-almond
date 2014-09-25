@@ -6,15 +6,6 @@ import requests
 class UserProfile(models.Model):
     user = models.OneToOneField(User, related_name='profile')
 
-    venmo_id = EncryptedCharField(max_length=200)
-    venmo_access_token = EncryptedCharField(max_length=200)
-    venmo_refresh_token = EncryptedCharField(max_length=200)
-
-    def is_venmo_authorized(self):
-        if self.venmo_access_token:
-            return True
-        return False
-
 User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
 
 class Vendor(models.Model):

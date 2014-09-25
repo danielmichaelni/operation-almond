@@ -17,7 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['VENMO_SECRET']
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -162,12 +162,6 @@ SOCIALACCOUNT_PROVIDERS = {
 SITE_ID = 1
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-### APP INFO
-
-VENMO_ID = 1983
-VENMO_SECRET = os.environ['VENMO_SECRET']
-VENMO_PAY_TO_USER_ID = 1392315553808384410
 
 ### ENCRYPTED FIELDS
 

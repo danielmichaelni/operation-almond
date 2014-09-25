@@ -4,14 +4,6 @@
 
 <div class="container">
     <h1>Profile</h1>
-    {% if request.user.profile.is_venmo_authorized %}
-        <h2>You are connected with Venmo!</h2>
-        <p>
-            Please track your venmo account to ensure no unauthorized payments have been made from your account. If you notice any strange activity on your account, please refresh your access token <a href="https://venmo.com/account/settings/developers">here</a> and notify us at email@example.com. Thanks.
-        </p>
-    {% else %}
-        <a href="{{ venmo_authorization_url }}">Connect with Venmo</a>
-    {% endif %}
 </div>
 
 {% endblock %}
