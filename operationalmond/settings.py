@@ -49,6 +49,8 @@ INSTALLED_APPS = (
     'django_extensions',
     # bootstrap-form
     'bootstrapform',
+    # payments
+    'payments',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -166,3 +168,12 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ### ENCRYPTED FIELDS
 
 ENCRYPTED_FIELD_KEYS_DIR = os.path.join(BASE_DIR, '../keyset')
+
+### DJANGO-PAYMENT STUFF
+
+PAYMENT_BASE_URL = 'http://operationalmond.herokuapp.com/'
+
+PAYMENT_MODEL = 'mypaymentapp.Payment'
+
+PAYMENT_VARIANTS = {
+    'default': ('payments.dummy.DummyProvider', {})}

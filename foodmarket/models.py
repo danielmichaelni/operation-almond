@@ -1,7 +1,23 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django_extensions.db.fields.encrypted import EncryptedCharField
+from decimal import Decimal
+from payments import PurchasedItem
+from payments.models import BasePayment
 import requests
+
+class Payment(BasePayment):
+    
+    def get_failure_url(self):
+        return 'http://operationalmond.herokuapp.com/failure/'
+
+    def get_success_url(self):
+        return 'http://operationalmond.herokuapp.com/success/'
+
+    def get_purchased_items(self):
+        # you'll probably want to retrieve these from an associated order
+        yield PurchasedItem(name='The Hound of the Baservilles', sku='BSKV',
+                            quantity=9, price=Decimal(10), currency='USD')
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, related_name='profile')
